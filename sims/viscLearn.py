@@ -1,13 +1,22 @@
-import os
 import numpy as np
-from argparse import ArgumentParser
-import matplotlib.pyplot as plt
 from utils import TFuncs
 from utils import GPLearn
 from utils import plots
 
 
 def active_learning_visc(X_grid,index_list,threshold,Number_of_iterations,kernel, scale, x_label, y_label ):
+    """Active learning code to execute the Active learning
+
+    Args:
+        X_grid (array): X data for prediction
+        index_list (array): random integers stored for sampling
+        threshold (double): cut-off variance
+        Number_of_iterations (int): Iteration number to allocate space for Y estimates
+        kernel (GPy.kernel): Kernel that decides the Cov matrix
+        scale (bool): linear/logarithmic
+        x_label (string): x label
+        y_label (string): y label
+    """
     N_init = len(index_list)
     
     X_samples = X_grid[index_list]
@@ -41,9 +50,7 @@ def active_learning_visc(X_grid,index_list,threshold,Number_of_iterations,kernel
 
         index_list.append(next_sample_index)
         next_sample_loc = X_grid[next_sample_index]
-
-        next_sample_value = TFuncs.target_stress(next_sample_loc, 0.5,2,.5,.2,4)
-        
+        next_sample_value = TFuncs.target_stress(next_sample_loc, 0.5,2,.5,.2,4)        
 
         # add the desired sample to our data
         X_samples = np.vstack((X_samples, X_grid[next_sample_index, :]))
@@ -56,9 +63,11 @@ def active_learning_visc(X_grid,index_list,threshold,Number_of_iterations,kernel
         varY_estimates[:, :, i+1] = Cov
         if(i%2==0):
             num_list.append(i)
-        i = i+1
+        i = i+1        
     Number_of_iterations = i
     index_list.append(0)
+    
+    # plots
     plots.plot_summary_visc(Number_of_iterations ,
                  X_grid,
                  X_samples,

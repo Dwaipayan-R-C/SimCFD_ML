@@ -84,7 +84,6 @@ def eos_al_func(save_every,threshold,time_count,N_init,path,N, kernel, iter_num,
                     y_sample_new.append(Y_samples[j])    
             if (len(x_sample_new)!=0):            
                 x_sample_new = np.array(x_sample_new)
-                # x_sample_new = x_sample_new[:, None]
                 y_sample_new = np.array(y_sample_new)      
             else:
                 no_last_data = False
