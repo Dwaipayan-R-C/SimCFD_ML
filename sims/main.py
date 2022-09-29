@@ -32,19 +32,24 @@ def eos_active_learning(save_every,threshold,time_steps,N_init,path,N, kernel, i
     fig.savefig(path)
     
     
-def stress_viscosity_learning():
-    x_low = 0
-    x_high = 1.2e1
-    N = 100
-    N_init = 5
-    # 1.2e1 for stress vs viscosity
-    X_grid = np.linspace(x_low, x_high, 100)    
-    threshold = 1e-5
-    Number_of_iterations = 100
+def stress_viscosity_learning(x_low,x_high,N_init,N,iter_num,threshold):
+    """Shear stress vs shear rate main function to create initial setup
+    for active learning.
+
+    Args:
+        x_low (double): Lower limit of x scale
+        x_high (double): Higher limit of x scale
+        N_init (int): number of initial sample space
+        N (int): Grid resolution
+        iter_num (int): Iteration number to allocate space for Y estimates
+        threshold (double): Tolerance in max. variance
+    """
+    
+    X_grid = np.linspace(x_low, x_high, N)
     kernel = GPy.kern.RBF(1) * GPy.kern.RatQuad(1)
     scale = 'linear'
     x_label = r"shear stress"
     y_label = 'shear rate'
     
     index_list = list(np.concatenate((np.array([x_low]), np.random.randint(x_low+1, N//2, N_init))))
-    viscLearn.active_learning_visc(X_grid,index_list,threshold,Number_of_iterations,kernel, scale, x_label, y_label)
+    viscLearn.active_learning_visc(X_grid,index_list,threshold,iter_num,kernel, scale, x_label, y_label)
