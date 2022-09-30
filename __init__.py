@@ -16,6 +16,9 @@ if __name__ == "__main__":
     
     # Stress vs rate simulation
     # main.stress_viscosity_learning(0,1.2e1,5,100,100, 1e-5, 1)
+    
+    # Put default values
+    # Hardcoded resolution
 
        
     

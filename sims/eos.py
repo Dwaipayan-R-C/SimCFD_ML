@@ -58,7 +58,7 @@ def eos_al_func(save_every,threshold,time_count,N_init,path,N, kernel, iter_num,
         if(time_step%save_every==0):            
             ax = axes[time_step//save_every][2]
             for plot_loop in range(0,time_step+1): 
-                x, dens = np.loadtxt(f"{dirname}\\density_t{plot_loop:02d}.dat", unpack=True)
+                x, dens = np.loadtxt(f"{dirname}/density_t{plot_loop:02d}.dat", unpack=True)
                 ax.plot(x, dens)
             data_time = '{:.2e}'.format((time_step+1)*.0002)            
             ax.text(.2, 0.8,f'Timestep = {time_step+1}', ha='center', va='center', transform=ax.transAxes, fontsize=7, bbox=dict(facecolor='red', alpha=0.5))
@@ -100,7 +100,7 @@ def eos_al_func(save_every,threshold,time_count,N_init,path,N, kernel, iter_num,
             
             x_grid_last = np.shape(X_grid)[0]-1
             start_extrapolation_index = np.shape(X_samples)[0]-1
-        x, dens = np.loadtxt(f"{dirname}\\density_t{time_step+1:02d}.dat", unpack=True) 
+        x, dens = np.loadtxt(f"{dirname}/density_t{time_step+1:02d}.dat", unpack=True) 
         exp_region = np.linspace(X_grid[-1][0],np.max(dens),10)
         X_grid = np.concatenate((X_grid,exp_region[:,None]))
     print(len(var_list))        
