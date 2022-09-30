@@ -124,10 +124,10 @@ def plot_AL_iteration_visc(ax,fig1, X_grid, mean, Cov, alpha_full, X_samples, Y_
     else:
         l3 = ax.plot([], [], 'g--', label="Next sample")
 
-    lns = l1 + l2 + l3    
-        
-    path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'data\\results'))
-    save_path = os.path.join(path, f'al_rbf_lin_{scale}.png')       
+    lns = l1 + l2 + l3
+
+    path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'results'))
+    save_path = os.path.join(path, f'al_rbf_lin_{scale}.png')
     fig1.savefig(save_path, pad_inches=1)
     return lns
 
