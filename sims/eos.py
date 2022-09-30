@@ -12,19 +12,14 @@ def eos_al_func(save_every,threshold,time_count,N_init,path,N, kernel, iter_num,
    
     X_grid = np.linspace(xlo,xhi, N)    
     index_list = list( np.random.randint(0, 100, N_init))    
-    X_samples = X_grid[index_list]
-    Y_samples = TFuncs.target_function(X_samples, path)
-
+    
     # Sample
     X_samples = np.linspace(xlo,xhi,N_init)
     Y_samples = np.array(TFuncs.modified_BWR(X_samples, 2, path))[:, None]
     X_samples = X_samples[:, None]
     X_grid = np.array(X_grid)[:, None]    
-
-    # Number of GP iterations
-    iter_num = 1000    
-    # We will use this matrix to store the GP mean at every iteration.
-    
+       
+    # We will use this matrix to store the GP mean at every iteration.    
     Y_estimates, varY_estimates = [],[]
     # GP regression
     mean, Cov, variance, m = GPLearn.GP_analysis(X_samples, Y_samples, X_grid,kernel)
@@ -63,7 +58,7 @@ def eos_al_func(save_every,threshold,time_count,N_init,path,N, kernel, iter_num,
         if(time_step%save_every==0):            
             ax = axes[time_step//save_every][2]
             for plot_loop in range(0,time_step+1): 
-                x, dens = np.loadtxt(f"{dirname}\\density_t{plot_loop:02d}.dat", unpack=True)
+                x, dens = np.loadtxt(f"{dirname}/density_t{plot_loop:02d}.dat", unpack=True)
                 ax.plot(x, dens)
             data_time = '{:.2e}'.format((time_step+1)*.0002)            
             ax.text(.2, 0.8,f'Timestep = {time_step+1}', ha='center', va='center', transform=ax.transAxes, fontsize=7, bbox=dict(facecolor='red', alpha=0.5))
@@ -105,7 +100,7 @@ def eos_al_func(save_every,threshold,time_count,N_init,path,N, kernel, iter_num,
             
             x_grid_last = np.shape(X_grid)[0]-1
             start_extrapolation_index = np.shape(X_samples)[0]-1
-        x, dens = np.loadtxt(f"{dirname}\\density_t{time_step+1:02d}.dat", unpack=True) 
+        x, dens = np.loadtxt(f"{dirname}/density_t{time_step+1:02d}.dat", unpack=True) 
         exp_region = np.linspace(X_grid[-1][0],np.max(dens),10)
         X_grid = np.concatenate((X_grid,exp_region[:,None]))
     print(len(var_list))        

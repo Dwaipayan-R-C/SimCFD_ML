@@ -4,7 +4,7 @@ from utils import GPLearn
 from utils import plots
 
 
-def active_learning_visc(X_grid,index_list,threshold,Number_of_iterations,kernel, scale, x_label, y_label ):
+def active_learning_visc(X_grid,index_list,threshold,Number_of_iterations,kernel, scale, x_label, y_label, save_every ):
     """Active learning code to execute the Active learning
 
     Args:
@@ -61,7 +61,7 @@ def active_learning_visc(X_grid,index_list,threshold,Number_of_iterations,kernel
 
         Y_estimates[:, i+1] = mean.ravel()
         varY_estimates[:, :, i+1] = Cov
-        if(i%2==0):
+        if(i%save_every==0):
             num_list.append(i)
         i = i+1        
     Number_of_iterations = i
