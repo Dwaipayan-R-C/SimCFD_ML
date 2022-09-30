@@ -12,19 +12,14 @@ def eos_al_func(save_every,threshold,time_count,N_init,path,N, kernel, iter_num,
    
     X_grid = np.linspace(xlo,xhi, N)    
     index_list = list( np.random.randint(0, 100, N_init))    
-    X_samples = X_grid[index_list]
-    Y_samples = TFuncs.target_function(X_samples, path)
-
+    
     # Sample
     X_samples = np.linspace(xlo,xhi,N_init)
     Y_samples = np.array(TFuncs.modified_BWR(X_samples, 2, path))[:, None]
     X_samples = X_samples[:, None]
     X_grid = np.array(X_grid)[:, None]    
-
-    # Number of GP iterations
-    iter_num = 1000    
-    # We will use this matrix to store the GP mean at every iteration.
-    
+       
+    # We will use this matrix to store the GP mean at every iteration.    
     Y_estimates, varY_estimates = [],[]
     # GP regression
     mean, Cov, variance, m = GPLearn.GP_analysis(X_samples, Y_samples, X_grid,kernel)
