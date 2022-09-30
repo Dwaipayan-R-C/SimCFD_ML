@@ -5,7 +5,7 @@ from sims import eos
 from sims import viscLearn
 import GPy
 
-def eos_active_learning(save_every,threshold,time_steps,N_init,path,N, kernel, iter_num):
+def eos_active_learning(kernel,path,save_every = 8,threshold= 1e-1,time_steps=25,N_init=5,N=100, iter_num=1000, exp_resolution = 5):
     """Main function for Active learning of equation of state
 
     Args:
@@ -26,15 +26,14 @@ def eos_active_learning(save_every,threshold,time_steps,N_init,path,N, kernel, i
     density_max = np.max(dens)
     x, dens = np.loadtxt(data_path_min, unpack=True)
     density_min = np.min(dens)
-    xhi, xlo = density_min,np.max(dens)
-    exp_resolution = 5    
+    xhi, xlo = density_min,np.max(dens)      
     fig = eos.eos_al_func(save_every, threshold,time_steps,N_init,path,N,kernel,iter_num,density_min,density_max,xlo,xhi, exp_resolution)
     path = os.path.join(path,'results/eos_al.png')
     os.makedirs = True
     fig.savefig(path)
     
     
-def stress_viscosity_learning(x_low,x_high,N_init,N,iter_num,threshold, save_every):
+def stress_viscosity_learning(x_low=0,x_high=1.2e-1,N_init=5,N=100,iter_num=100,threshold=1e-5, save_every=1):
     """Shear stress vs shear rate main function to create initial setup
     for active learning.
 
