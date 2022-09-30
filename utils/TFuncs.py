@@ -1,6 +1,4 @@
-import matplotlib.pyplot as plt
 import numpy as np
-import GPy
 import os
 
 
@@ -60,13 +58,13 @@ def Calculate_RMSE(mean, x_val):
 
 
 def target_stress(gamma, n, eta_0, eta_inf, lamda, a):
-    """    
+    """
     x: shear rate
     eta_N: Newtonian viscosity
-    lamda: relaxation time   
+    lamda: relaxation time
     """
     # return
-    stress = (eta_inf + (eta_0 - eta_inf)*(1+(lamda*gamma)**a)**((n-1)/1))*gamma    
+    stress = (eta_inf + (eta_0 - eta_inf)*(1+(lamda*gamma)**a)**((n-1)/1))*gamma
     return stress
 
 
