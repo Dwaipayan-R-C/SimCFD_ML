@@ -1,5 +1,5 @@
 # Skeleton
-This project is developed during a research assistant position at [IMTEK Simulation Department](https://www.imtek.uni-freiburg.de/professuren/simulation/simulation) under the supervision of Hannes Holey (PhD. student at [Karlshruhe Institute of Technology](https://www.kit.edu/kit/english/index.php)). The project is mainly aimed to implement ML predictions in Tribology. We use [Numpy](https://numpy.org/), [Matplotlib](https://matplotlib.org/) and [GPy](https://gpy.readthedocs.io/en/deploy/) for the computation. 
+This project is developed during a research assistant position at [IMTEK Simulation Department](https://www.imtek.uni-freiburg.de/professuren/simulation/simulation) under the supervision of Hannes Holey (PhD. student at [Karlsruhe Institute of Technology](https://www.kit.edu/kit/english/index.php)). The project is mainly aimed to implement ML predictions in Tribology. We use [Numpy](https://numpy.org/), [Matplotlib](https://matplotlib.org/) and [GPy](https://gpy.readthedocs.io/en/deploy/) for the computation. 
 
 ## Folder Structure
     .
